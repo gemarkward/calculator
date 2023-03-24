@@ -1,0 +1,42 @@
+body 
+{
+    height: 92vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+div
+{
+    display: flex;
+    flex: 1;
+    align-content: center;
+}
+p
+{
+    margin: auto;
+}
+.row
+{
+    flex: auto;
+    flex-direction: row;
+}
+.button
+{
+    flex: 1;
+    flex-grow: 1;
+    background-color: teal;
+    border-style: outset;
+    border-color: black;
+}
+.small
+{
+    flex-grow: .5;
+}
+#calculator
+{
+    height: 90vh;
+    width: 90vh;
+    margin: auto;
+    flex-direction: column;
+    background-color: white;
+}
