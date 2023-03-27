@@ -3,6 +3,7 @@ $(function()
     // Elements used for calculator display
     const mainDisplayText = $('#mainDisplayText');
     const historyDisplayText = $('#historyDisplayText');
+    mainDisplayText.fit
     
     // Used to decide whether to continue calculating or start fresh
     let calculated = true;
