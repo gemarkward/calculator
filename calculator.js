@@ -67,7 +67,7 @@ $(function()
         };
     };
 
-    function parse(str)
+    function calculate(str)
     {
         let answer;
         str = str.split(" ");
@@ -121,7 +121,7 @@ $(function()
     $(".button").click(function(){
         if ($(this).text() == "=")
         {
-            parse(mainDisplayText.text());
+            calculate(mainDisplayText.text());
         }
         else if ($(this).attr('id') == 'clear')
         {
