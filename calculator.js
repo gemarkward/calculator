@@ -3,6 +3,13 @@ $(function()
     let firstNumber;
     let secondNumber;
     let operator;
+    let mainDisplay = 0;
+    let historyDisplay = 0;
+
+    function isNumber(val) 
+    {
+        return !isNaN(val);
+    }
 
     function add(a,b)
     {
@@ -48,6 +55,47 @@ $(function()
         if (o=="/")
         {
             return div(a,b);
+        };
+    };
+
+    function parse(str)
+    {
+        let answer;
+        str = str.split(" ");
+        while (str)
+        {
+            nextEntry = str.shift();
+            if (isNumber(nextEntry))
+            {
+                if (operator != null)
+                {
+                    if (firstNumber == null)
+                    {
+                        if (answer == null)
+                        {
+                            firstNumber = historyDisplay;
+                        }
+                        else
+                        {
+                            firstNumber = answer;
+                        };
+                    }
+                    else
+                    {
+                        secondNumber = nextEntry;
+                        answer = operate(firstNumber, secondNumber, operator)
+                        firstNumber = secondNumber = operator = null;
+                    };
+                }
+                else
+                {
+                    firstNumber = nextEntry;
+                };
+            }
+            else
+            {
+                operator = nextEntry;
+            };
         };
     };
 });
