@@ -149,9 +149,16 @@ $(function()
             historyDisplayText.text("0");
         } 
 
-
         else
         {
+            // Case - user tries to input incorrect "."
+            if ($(this).text() == ".")
+            {
+                if (mainDisplayText.text().includes("."))
+                {
+                    return 0;
+                }
+            }
             // Case - the main display has a previously calculated answer
             if (calculated)
             {   
