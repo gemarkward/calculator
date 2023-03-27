@@ -1,13 +1,19 @@
 $(function()
 {
+    // Elements used for calculator display
     const mainDisplayText = $('#mainDisplayText');
     const historyDisplayText = $('#historyDisplayText');
+    
+    // Used to decide whether to continue calculating or start fresh
     let calculated = true;
+
+    // Calculation variables
     let firstNumber;
     let secondNumber;
     let operator;
+
+    // Used to store the last calculated value for display
     let historyValue = 0;
-    let answer;
 
     function isNumber(val) 
     {
@@ -63,6 +69,7 @@ $(function()
 
     function parse(str)
     {
+        let answer;
         str = str.split(" ");
         while (str.length>0)
         {
