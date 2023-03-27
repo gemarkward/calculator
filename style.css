@@ -36,7 +36,7 @@ p
 {
     height: 90vh;
     width: 90vh;
-    margin: auto;
+    margin: auto auto auto auto;
     flex-direction: column;
     background-color: white;
 }
