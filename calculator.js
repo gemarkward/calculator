@@ -7,6 +7,7 @@ $(function()
     let secondNumber;
     let operator;
     let historyValue = 0;
+    let answer;
 
     function isNumber(val) 
     {
@@ -62,9 +63,7 @@ $(function()
 
     function parse(str)
     {
-        let answer;
         str = str.split(" ");
-        console.log("Parsing "+str.toString());
         while (str.length>0)
         {
             nextEntry = str.shift();
@@ -86,8 +85,11 @@ $(function()
                     else
                     {
                         secondNumber = parseFloat(nextEntry);
+                        console.log(firstNumber+" "+operator+" "+secondNumber);
                         answer = operate(firstNumber, secondNumber, operator);
-                        firstNumber = secondNumber = operator = null;
+                        firstNumber = answer;
+                        secondNumber = null;
+                        operator = null;
                     };
                 }
                 else
