@@ -40,3 +40,22 @@ p
     flex-direction: column;
     background-color: white;
 }
+#mainDisplay
+{
+    border-color: black;
+    border-style: groove;
+    float:right;
+    text-align: right;
+    padding-right: 5px;
+}
+#mainDisplayText
+{
+    color: black;
+    font-size: xx-large;
+    margin: 0 0 0 auto;
+}
+#historyDisplayText
+{
+    color: black;
+    font-size: medium;
+}

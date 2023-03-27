@@ -1,10 +1,12 @@
 $(function()
 {
+    const mainDisplayText = $('#mainDisplayText');
+    const historyDisplayText = $('#historyDisplayText');
+    let calculated = true;
     let firstNumber;
     let secondNumber;
     let operator;
-    let mainDisplay = 0;
-    let historyDisplay = 0;
+    let historyValue = 0;
 
     function isNumber(val) 
     {
@@ -52,7 +54,7 @@ $(function()
         {
             return mul(a,b);
         };
-        if (o=="/")
+        if (o=="%")
         {
             return div(a,b);
         };
@@ -62,7 +64,8 @@ $(function()
     {
         let answer;
         str = str.split(" ");
-        while (str)
+        console.log("Parsing "+str.toString());
+        while (str.length>0)
         {
             nextEntry = str.shift();
             if (isNumber(nextEntry))
@@ -73,23 +76,23 @@ $(function()
                     {
                         if (answer == null)
                         {
-                            firstNumber = historyDisplay;
+                            firstNumber = parseFloat(historyDisplayText.text());
                         }
                         else
                         {
-                            firstNumber = answer;
+                            firstNumber = parseFloat(answer);
                         };
                     }
                     else
                     {
-                        secondNumber = nextEntry;
-                        answer = operate(firstNumber, secondNumber, operator)
+                        secondNumber = parseFloat(nextEntry);
+                        answer = operate(firstNumber, secondNumber, operator);
                         firstNumber = secondNumber = operator = null;
                     };
                 }
                 else
                 {
-                    firstNumber = nextEntry;
+                    firstNumber = parseFloat(nextEntry);
                 };
             }
             else
@@ -97,6 +100,42 @@ $(function()
                 operator = nextEntry;
             };
         };
+        console.log(answer);
+        answer = parseFloat(answer.toFixed(30));
+        calculated = true;
+        mainDisplayText.text(answer.toString());
+        historyDisplayText.text(historyValue.toString());
+        historyValue = answer;
+        answer = null;
     };
+
+    $(".button").click(function(){
+        if ($(this).text() == "=")
+        {
+            parse(mainDisplayText.text());
+        }
+        else if ($(this).attr('id') == 'clear')
+        {
+            mainDisplayText.text("");
+            historyDisplayText.text("");
+        } 
+        else
+        {
+            if (calculated)
+            {
+                if (isNumber($(this).text()))
+                {
+                    historyDisplayText.text(mainDisplayText.text());
+                    mainDisplayText.text("");
+                };
+                calculated = false;
+            }
+            if (!isNumber($(this).text()) && !isNumber(mainDisplayText.text()[mainDisplayText.text().length-1]))
+            {
+                return 0;
+            };
+            mainDisplayText.text(mainDisplayText.text()+$(this).text());
+        }
+    });
 });
 
